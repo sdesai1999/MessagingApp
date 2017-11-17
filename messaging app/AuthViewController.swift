@@ -19,15 +19,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         enterButton.layer.cornerRadius = 5
-        setBackgroundColor(red: 100, green: 200, blue: 150, alpha: 1.0)
-    }
-    
-    func setBackgroundColor(red: Double, green: Double, blue: Double, alpha: Double) {
-        let redC = CGFloat(red / 255)
-        let greenC = CGFloat(green / 255)
-        let blueC = CGFloat(blue / 255)
-        let alphaC = CGFloat(alpha)
-        self.view.backgroundColor = UIColor(red: redC, green: greenC, blue: blueC, alpha: alphaC)
+        self.view.backgroundColor = getColor(R: 100, G: 200, B: 150, A: 1.0)
     }
     
     func showErrorAlert(errorMessage: String) {
@@ -70,26 +62,10 @@ class AuthViewController: UIViewController {
     @IBAction func segControlTapped(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             enterButton.setTitle("Log In", for: .normal)
-            setBackgroundColor(red: 100, green: 200, blue: 150, alpha: 1.0)
+            self.view.backgroundColor = getColor(R: 100, G: 200, B: 150, A: 1.0)
         } else {
             enterButton.setTitle("Sign Up", for: .normal)
-            setBackgroundColor(red: 229, green: 106, blue: 106, alpha: 1.0)
+            self.view.backgroundColor = getColor(R: 229, G: 106, B: 106, A: 1.0)
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -21,7 +21,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var ref: DatabaseReference?
     var handle: DatabaseHandle?
     var messageList: [String] = []
-    var colorBool: Bool = false
     
     var redC: Double = 229 / 255
     var greenC: Double = 106 / 255
@@ -31,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         sendButtonOutlet.layer.cornerRadius = 5
         logOutButton.layer.cornerRadius = 5
-        self.view.backgroundColor = UIColor(red: CGFloat(redC), green: CGFloat(greenC), blue: CGFloat(blueC), alpha: 1.0)
+        self.view.backgroundColor = getColor(R: 229, G: 106, B: 106, A: 1.0)
         ref = Database.database().reference()
         handle = ref?.child("messages").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? String {
@@ -76,11 +75,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.redC = 100 / 255
         self.greenC = 200 / 255
         self.blueC = 150 / 255
-        cell.backgroundColor = UIColor(red: CGFloat(redC), green: CGFloat(greenC), blue: CGFloat(blueC), alpha: 1.0)
+        cell.backgroundColor = getColor(R: 100, G: 200, B: 150, A: 1.0)
         return cell
     }
-
-    
-
 }
+
+public func getColor(R red: Double, G green: Double, B blue: Double, A alpha: Double) -> UIColor {
+    let newRed = CGFloat(red / 255)
+    let newGreen = CGFloat(green / 255)
+    let newBlue = CGFloat(blue / 255)
+    let newAlpha = CGFloat(alpha)
+    let newColor = UIColor(red: newRed, green: newGreen, blue: newBlue, alpha: newAlpha)
+    return newColor
+}
+
+
+
+
+
+
+
+
+
+
 
